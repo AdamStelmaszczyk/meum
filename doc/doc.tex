@@ -1,0 +1,50 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{geometry}
+\usepackage[table]{xcolor}
+\title{\textbf{Algorytm ewolucyjny z populacją rosnącą w nieskończoność}}
+\author{Adam Stelmaszczyk, Michał Karpiuk}
+\date{\today}
+\setlength{\parindent}{0in}
+\makeatletter\renewcommand{\ALG@name}{}
+
+\begin{document}
+\maketitle
+
+\section{Zadanie}
+
+Celem zadania jest przedstawienie koncepcji, implementacja i testowanie algorytmu ewolucyjnego z populacją rosnącą
+w nieskończoność, zawierającą wszystkie punkty wygenerowane do tej pory.
+
+\subsection{Schemat algorytmu ewolucyjnego}
+
+\begin{algorithm}[!htb]
+\label{ea}
+\begin{algorithmic}[1]
+\Function{algorytm\_ewolucyjny}{}
+	\State $P(0) \gets \{x_1, x_2, \ldots, x_n\}$
+	\State $t \gets 0$
+	\While{$! stop$}
+    	\For{$i = 0$ \bf{to} $i = n - 1$}
+    		\If{$U(1) < p_c$}
+    			\State $O(t,i) \gets mutacja(crossover(selekcja(P(t), 2)))$
+    		\Else
+    			\State $O(t,i) \gets mutacja(selekcja(P(t),1))$
+    		\EndIf
+    	\EndFor
+    \State $P(t+1) \gets sukcesja(P(t),O(t))$
+    \State $t \gets t+1$
+  	\EndWhile
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
