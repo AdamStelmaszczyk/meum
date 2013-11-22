@@ -12,6 +12,7 @@
 \date{\today}
 \setlength{\parindent}{0in}
 \makeatletter\renewcommand{\ALG@name}{}
+\renewcommand\refname{Referencje}
 
 \begin{document}
 \maketitle
@@ -21,25 +22,89 @@
 Celem zadania jest przedstawienie koncepcji, implementacja i testowanie algorytmu ewolucyjnego z populacją rosnącą
 w nieskończoność, zawierającą wszystkie punkty wygenerowane do tej pory.
 
-\subsection{Schemat algorytmu ewolucyjnego}
+\section{Koncepcja}
+
+Na początku zostanie zaimplementowany podstawowy algorytm ewolucyjny \cite{jarabas}, dalej nazywany AE, działający według następującego schematu:
 
 \begin{algorithm}[!htb]
-\label{ea}
 \begin{algorithmic}[1]
-\Function{algorytm\_ewolucyjny}{}
-	\State $P(0) \gets \{x_1, x_2, \ldots, x_n\}$
-	\State $t \gets 0$
-	\While{$! stop$}
-    	\For{$i = 0$ \bf{to} $i = n - 1$}
-    		\If{$U(1) < p_c$}
-    			\State $O(t,i) \gets mutacja(crossover(selekcja(P(t), 2)))$
-    		\Else
-    			\State $O(t,i) \gets mutacja(selekcja(P(t),1))$
-    		\EndIf
-    	\EndFor
-    \State $P(t+1) \gets sukcesja(P(t),O(t))$
+\Function{ae}{}
+  \State $P(0) \gets \{x_1, x_2, \ldots, x_n\}$
+  \State $t \gets 0$
+  \While{$! stop$}
+    \For{$i = 0$ \bf{to} $i = n - 1$}
+      \State $O(t,i) \gets$ mutacja$($krzy{\.z}owanie$($selekcja$(P(t), 2, U)))$
+    \EndFor
+    \State $P(t+1) \gets$ sukcesja$(P(t),O(t))$
     \State $t \gets t+1$
-  	\EndWhile
+  \EndWhile
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+Rozwiązania $\{x_1, x_2, \ldots, x_n\}$ reprezentowane są jako wektor liczb rzeczywistych długości $D$,
+gdzie $D$ to liczba wymiarów. Szukanym optimum jest minimum funkcji celu $f(x)$.
+
+\subsection{Mutacja}
+
+Mutacja dodaje szum gaussowski o odchyleniu standardowym do każdej współrzędnej wejściowego rozwiązania.
+
+\begin{algorithm}[!htb]
+\begin{algorithmic}[1]
+\Function{mutacja}{$x$}
+  \For{$i = 0$ \bf{to} $i = D - 1$}
+    \State $mutant[i] \gets x[i] + \mathcal{N}(0, 1)$
+  \EndFor
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Krzyżowanie}
+
+Krzyżowanie otrzymuje na wejściu dwa rozwiązania rodzicielskie $x_1,x_2$ i~zwraca jedno rozwiązanie potomne. 
+Wykorzystano krzyżowanie uśredniające.
+
+\begin{algorithm}[!htb]
+\begin{algorithmic}[1]
+\Function{krzy{\.z}owanie}{$x_1, x_2$}
+  \For{$i = 0$ \bf{to} $i = D - 1$}
+    \State $potomek[i] \gets \frac{x_1[i] + x_2[i]}{2}$
+  \EndFor
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Sukcesja}
+
+Sukcesja na wejściu otrzymuje dwie populacje o rozmiarze $n$: aktualną $P$ oraz populację mutantów $O$.
+Wyjściem jest jedna populacja o rozmiarze $n$.
+
+\begin{algorithm}[!htb]
+\begin{algorithmic}[1]
+\Function{sukcesja}{$P, O$}
+  \For{$i = 0$ \bf{to} $i = n - 1$}
+    \If{$f(O(t, i)) < f(P(t, i)) $}
+      \State $P(t+1, i) \gets O(t, i)$
+    \Else
+      \State $P(t+1, i) \gets P(t, i)$
+    \EndIf
+  \EndFor
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Selekcja}
+
+Selekcja otrzymuje na wejściu zbiór rozwiązań $X$ oraz $l$ - liczbę rozwiązań do wylosowania zgodnie z danym rozkładem $R$.
+
+\begin{algorithm}[!htb]
+\begin{algorithmic}[1]
+\Function{selekcja}{$X, l, R$}
+  \State $wybrane \gets \emptyset$
+  \For{$i = 0$ \bf{to} $i = l - 1$}
+    \State $rand = R(0, |X| - 1)$
+    \State $wybrane \gets wybrane \cup X[rand]$
+  \EndFor
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
