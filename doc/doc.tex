@@ -5,6 +5,7 @@
 \usepackage{float}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{amssymb}
 \usepackage{geometry}
 \usepackage[table]{xcolor}
 \title{\textbf{Algorytm ewolucyjny z populacją rosnącą w nieskończoność}}
@@ -24,9 +25,11 @@ w nieskończoność, zawierającą wszystkie punkty wygenerowane do tej pory.
 
 \section{Koncepcja}
 
-Na początku zostanie zaimplementowany podstawowy algorytm ewolucyjny \cite{jarabas}, dalej nazywany AE, działający według następującego schematu:
+Na początku zostanie zaimplementowany podstawowy algorytm ewolucyjny \cite{jarabas}, dalej nazywany AE, 
+działający według schematu \ref{ae}:
 
 \begin{algorithm}[!htb]
+\label{ae}
 \begin{algorithmic}[1]
 \Function{ae}{}
   \State $P(0) \gets \{x_1, x_2, \ldots, x_n\}$
@@ -108,6 +111,30 @@ Selekcja otrzymuje na wejściu zbiór rozwiązań $X$ oraz $l$ - liczbę rozwią
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
+
+\subsection{AE z populacją rosnącą w nieskończoność - NAE}
+
+Zmodyfikowany AE będziemy nazywać NAE - nieskończony algorytm ewolucjny, tzn. AE z populacją rosnącą w nieskończoność.
+NAE od AE (przedstawionego na schemacie \ref{ae}) różni się jedynie selekcją. W NAE wywołanie operatora selekcji wygląda następująco:
+
+\begin{algorithm}[!htb]
+\begin{algorithmic}[1] 
+\State $O(t,i) \gets$ mutacja$($krzy{\.z}owanie$($selekcja$(P, 2, R)))$  
+\end{algorithmic}
+\end{algorithm}
+
+Tzn. wybieramy 2 losowe rozwiązania spośród wszystkich populacji zgodnie z rozkładem $R$.
+Wersji NAE może być nieskończenie wiele, w zależności od wybranego rozkładu. 
+W tej pracy założymy, ze funkcja gęstości prawdopodobieństwa rozkładu $R$ jest postaci $at^w + b$, gdzie
+$a, b, w \in \mathbb{R}$ to nieujemne parametry, zaś $t \in \mathbb{N}$ to numer populacji. Przetestujemy następujące wersje NAE:
+
+\begin{enumerate}
+ \item NAEU, rozkład jednostajny $\mathcal{U}$, $a=0, b=\frac{1}{t_{max}}$.
+ \item NAEP, rozkład o pierwiastkowej funkcji gęstości prawdopodobieństwa, \\$w=\frac{1}{2}$.
+ \item NAEL, rozkład o liniowej funkcji gęstości prawdopodobieństwa, $w=1$.
+ \item NAEK, rozkład o kwadratowej funkcji gęstości prawdopodobieństwa, $w=2$.
+\end{enumerate}
+
 
 \nocite{*}
 \bibliographystyle{plain}
