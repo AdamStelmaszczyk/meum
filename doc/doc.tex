@@ -125,16 +125,34 @@ NAE od AE (przedstawionego na schemacie \ref{ae}) różni się jedynie selekcją
 
 Tzn. wybieramy 2 losowe rozwiązania spośród wszystkich populacji zgodnie z rozkładem $R$.
 Wersji NAE może być nieskończenie wiele, w zależności od wybranego rozkładu. 
-W tej pracy założymy, ze funkcja gęstości prawdopodobieństwa rozkładu $R$ jest postaci $at^w + b$, gdzie
-$a, b, w \in \mathbb{R}$ to nieujemne parametry, zaś $t \in \mathbb{N}$ to numer populacji. Przetestujemy następujące wersje NAE:
+W tej pracy zakładamy, ze funkcja gęstości prawdopodobieństwa rozkładu $R$ jest postaci $at^w + b$, gdzie
+$a, b, w \in \mathbb{R}$ to nieujemne parametry, zaś $t \in \mathbb{N}$ to numer populacji. 
+
+\section{Testowanie}
+
+Porównano następujące algorytmy:
 
 \begin{enumerate}
- \item NAEU, rozkład jednostajny $\mathcal{U}$, $a=0, b=\frac{1}{t_{max}}$.
- \item NAEP, rozkład o pierwiastkowej funkcji gęstości prawdopodobieństwa, \\$w=\frac{1}{2}$.
- \item NAEL, rozkład o liniowej funkcji gęstości prawdopodobieństwa, $w=1$.
- \item NAEK, rozkład o kwadratowej funkcji gęstości prawdopodobieństwa, $w=2$.
+ \item AE, podstawowy algorytm ewolucyjny opisany schematem \ref{ae}.
+ \item NAEU, NAE z rozkładem jednostajnym $\mathcal{U}$, $a=0$.
+ \item NAEP, rozkład o pierwiastkowej funkcji gęstości prawdopodobieństwa, \\$a>0, w=\frac{1}{2}$.
+ \item NAEL, rozkład o liniowej funkcji gęstości prawdopodobieństwa, $a>0, w=1$.
+ \item NAEK, rozkład o kwadratowej funkcji gęstości prawdopodobieństwa, \\$a>0, w=2$.
 \end{enumerate}
 
+Eksperymenty przeprowadzono na 7 funkcjach testowych o numerach 15, 16, 19, 20, 21, 22, 24 z BBOB 2013 \cite{finck, hansen}, 
+zaimplementowanych w języku C.
+Funkcje testowe są wywoływane z Javy, w której napisano algorytmy oraz procedurę testującą.
+Liczba wymiarów $D \in \{10, 20, 40\}$. Maksymalna liczba wywołań funkcji oceny $FEs = 10^5D$. 
+Rozmiar populacji $n = 10D$. Jeśli algorytm nie znajdował minimum, wówczas w jednym uruchomieniu, na jednej funkcji, 
+generował $\frac{FEs}{n} = 10^4$ pokoleń. 
+Na każdej funkcji algorytm był niezależnie uruchamiany 15 razy, z każdego uruchomienia zapisywany był najlepszy wynik. \\
+\\
+W celu porównania, wykreślano dystrybuanty empiryczne najlepszych wyników z każdego uruchomienia 
+algorytmów na jednej funkcji. Najlepszym wynikiem jest najmniejsza różnica funkcji oceny dowolnego rozwiązania od minimum.
+Algorytm, którego dystrybuanta na wykresie przebiegała powyżej pozostałych, otrzymywał 4 punkty. 
+Za drugie miejsce algorytm otrzymywał 3 punkty, za trzecie 2, za czwarte 1, za ostatnie 0. 
+Jeśli dystrybuanty się przecinały, algorytmy zajmowały i-te miejsce ex aequo i otrzymywały punkty za i-te miejsce.
 
 \nocite{*}
 \bibliographystyle{plain}
