@@ -138,10 +138,25 @@ Porównano następujące algorytmy:
 
 \begin{enumerate}
  \item AE, podstawowy algorytm ewolucyjny opisany schematem \ref{ae}.
- \item NAEU, NAE z rozkładem jednostajnym $\mathcal{U}$, $a=0$.
- \item NAEP, rozkład o pierwiastkowej funkcji gęstości prawdopodobieństwa, \\$a>0, w=\frac{1}{2}$.
- \item NAEL, rozkład o liniowej funkcji gęstości prawdopodobieństwa, $a>0, w=1$.
- \item NAEK, rozkład o kwadratowej funkcji gęstości prawdopodobieństwa, \\$a>0, w=2$.
+ \item NAEU, NAE z rozkładem jednostajnym $\mathcal{U}$, $a=0$,
+czyli funkcja postaci $\frac{1}{b}$. 
+ \item NAEP, rozkład o pierwiastkowej funkcji gęstości prawdopodobieństwa, \\$a>0, b=0, w=\frac{1}{2}$,
+czyli funkcja postaci $a\sqrt{t}$.
+ \item NAEL, rozkład o liniowej funkcji gęstości prawdopodobieństwa, $a>0, b=0, w=1$,
+czyli funkcja postaci $at$.
+ \item NAEK, rozkład o kwadratowej funkcji gęstości prawdopodobieństwa, \\$a>0, b=0. w=2$,
+czyli funkcja postaci $at^2$.
+\end{enumerate}
+
+Przyjmując, że jesteśmy w populacji $T$, prawdopodobieństwo wylosowania populacji $t$ wynosi:
+\begin{enumerate}
+ \item 1 dla $t=T$, 0 dla $t \neq T$.
+ \item $\frac{1}{T}$.
+ \item $\frac{6\sqrt{t}}{(4T+1)\sqrt{T+1}}$.
+\footnote{Szukamy takiego $a$, dla którego $\sum\limits_{t=0}^T a\sqrt{t} = 1$. Zatem $a = \frac{1}{1 + \sqrt{2} + \dots + \sqrt{T}}$. 
+Suma w mianowniku jest równa $\frac{1}{6}(4T+1)\sqrt{T+1}$ z dokładnością do 0,5 \cite{snehal}.}
+ \item $\frac{2t}{T(T+1)}$.
+ \item $\frac{6t^2}{T(T+1)(2T+1)}$.
 \end{enumerate}
 
 Eksperymenty przeprowadzono na 7 funkcjach testowych o numerach 15, 16, 19, 20, 21, 22, 24 z BBOB 2013 \cite{finck, hansen}, 
