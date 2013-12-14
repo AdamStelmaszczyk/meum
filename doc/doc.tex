@@ -36,9 +36,11 @@ działający według schematu \ref{ae}:
   \State $t \gets 0$
   \While{$! stop$}
     \For{$i = 0$ \bf{to} $i = n - 1$}
-      \State $O(t,i) \gets$ mutacja$($krzy{\.z}owanie$($selekcja$(P(t), 2, U)))$
+      \State $a \gets$ selekcja$(\{P(t)\}, U)$
+      \State $b \gets$ selekcja$(\{P(t)\}, U)$
+      \State $O(t,i) \gets$ mutacja$($krzy{\.z}owanie$(a, b))$
     \EndFor
-    \State $P(t+1) \gets$ sukcesja$(P(t),O(t))$
+    \State $P(t+1) \gets$ sukcesja$(P(t), O(t))$
     \State $t \gets t+1$
   \EndWhile
 \EndFunction
@@ -98,16 +100,16 @@ Wyjściem jest jedna populacja o rozmiarze $n$.
 
 \subsection{Selekcja}
 
-Selekcja otrzymuje na wejściu zbiór rozwiązań $X$ oraz $l$ - liczbę rozwiązań do wylosowania zgodnie z danym rozkładem $R$.
+Selekcja otrzymuje na wejściu zbiór populacji $X$. W podstawowym AE przekazywana jest tylko jedna populacja, ta ostatnia, $P(t)$.
+Natomiast w AE z populacją rosnącą w nieskończoność, jako zbiór wejściowy przekazywane są wszystkie dotychczasowe populacje.
+Selekcja najpierw wybiera z prawdopodobieństwem zgodnym z rozkładem R jedną populację z $X$. Następnie z tej wybranej populacji 
+losuje i~zwraca jedno rozwiązanie wylosowane zgodnie z rozkładem jednostajnym.
 
 \begin{algorithm}[!htb]
 \begin{algorithmic}[1]
-\Function{selekcja}{$X, l, R$}
-  \State $wybrane \gets \emptyset$
-  \For{$i = 0$ \bf{to} $i = l - 1$}
-    \State $rand = R(0, |X| - 1)$
-    \State $wybrane \gets wybrane \cup X[rand]$
-  \EndFor
+\Function{selekcja}{$X, R$}
+  \State $P \gets X[R(0, |X| - 1)]$
+  \State $wynik \gets P[\mathcal{U}(0, |P| - 1)]$
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
@@ -119,14 +121,16 @@ NAE od AE (przedstawionego na schemacie \ref{ae}) różni się jedynie selekcją
 
 \begin{algorithm}[!htb]
 \begin{algorithmic}[1] 
-\State $O(t,i) \gets$ mutacja$($krzy{\.z}owanie$($selekcja$(P, 2, R)))$  
+  \State $a \gets$ selekcja$(\{P(0), P(1), \dots, P(t)\}, R)$
+  \State $b \gets$ selekcja$(\{P(0), P(1), \dots, P(t)\}, R)$
 \end{algorithmic}
 \end{algorithm}
 
-Tzn. wybieramy 2 losowe rozwiązania spośród wszystkich populacji zgodnie z rozkładem $R$.
-Wersji NAE może być nieskończenie wiele, w zależności od wybranego rozkładu. 
+Tzn. przekazujemy wszystkie dotychczasowe populacje i jedna z nich zostanie wybrana zgodnie z rozkładem $R$.
+Następnie z tej wybranej populacji zostanie wylosowane jedno rozwiązanie zgodnie z rozkładem jednostajnym.
+Wersji NAE może być nieskończenie wiele, w zależności od wybranego rozkładu $R$. 
 W tej pracy zakładamy, ze funkcja gęstości prawdopodobieństwa rozkładu $R$ jest postaci $at^w + b$, gdzie
-$a, b, w \in \mathbb{R}$ to nieujemne parametry, zaś $t \in \mathbb{N}$ to numer populacji. 
+$a, b, w \in \mathbb{R}$ to nieujemne parametry, zaś $t \in \mathbb{N} \cup \{0\}$ to numer populacji. 
 
 \section{Testowanie}
 
