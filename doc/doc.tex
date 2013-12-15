@@ -102,7 +102,7 @@ Wyjściem jest jedna populacja o rozmiarze $n$.
 
 Selekcja otrzymuje na wejściu zbiór populacji $X$. W podstawowym AE przekazywana jest tylko jedna populacja, ta ostatnia, $P(t)$.
 Natomiast w AE z populacją rosnącą w nieskończoność, jako zbiór wejściowy przekazywane są wszystkie dotychczasowe populacje.
-Selekcja najpierw wybiera z prawdopodobieństwem zgodnym z rozkładem R jedną populację z $X$. Następnie z tej wybranej populacji 
+Selekcja najpierw wybiera z prawdopodobieństwem zgodnym z rozkładem $R$ jedną populację z $X$. Następnie z tej wybranej populacji 
 losuje i~zwraca jedno rozwiązanie wylosowane zgodnie z rozkładem jednostajnym.
 
 \begin{algorithm}[!htb]
@@ -139,12 +139,12 @@ Porównano następujące algorytmy:
 \begin{enumerate}
  \item AE, podstawowy algorytm ewolucyjny opisany schematem \ref{ae}.
  \item NAEU, NAE z rozkładem jednostajnym $\mathcal{U}$, $a=0$,
-czyli funkcja postaci $\frac{1}{b}$. 
+czyli funkcja gęstości prawdopodobieństwa postaci $\frac{1}{b}$. 
  \item NAEP, rozkład o pierwiastkowej funkcji gęstości prawdopodobieństwa, \\$a>0, b=0, w=\frac{1}{2}$,
 czyli funkcja postaci $a\sqrt{t}$.
- \item NAEL, rozkład o liniowej funkcji gęstości prawdopodobieństwa, $a>0, b=0, w=1$,
+ \item NAEL, rozkład o liniowej funkcji gęstości prawdopodobieństwa, $a>0$, $b=0$, $w=1$,
 czyli funkcja postaci $at$.
- \item NAEK, rozkład o kwadratowej funkcji gęstości prawdopodobieństwa, \\$a>0, b=0. w=2$,
+ \item NAEK, rozkład o kwadratowej funkcji gęstości prawdopodobieństwa, \\$a>0, b=0, w=2$,
 czyli funkcja postaci $at^2$.
 \end{enumerate}
 
@@ -163,9 +163,15 @@ Eksperymenty przeprowadzono na 7 funkcjach testowych o numerach 15, 16, 19, 20, 
 zaimplementowanych w języku C.
 Funkcje testowe są wywoływane z Javy, w której napisano algorytmy oraz procedurę testującą.
 Liczba wymiarów $D \in \{10, 20, 40\}$. Maksymalna liczba wywołań funkcji oceny $FEs = 10^5D$. 
-Rozmiar populacji $n = 10D$. Jeśli algorytm nie znajdował minimum, wówczas w jednym uruchomieniu, na jednej funkcji, 
-generował $\frac{FEs}{n} = 10^4$ pokoleń. 
-Na każdej funkcji algorytm był niezależnie uruchamiany 15 razy, z każdego uruchomienia zapisywany był najlepszy wynik. \\
+Rozmiar populacji $n = 10D$. 
+Na każdej funkcji algorytm był niezależnie uruchamiany 15 razy, z każdego uruchomienia zapisywany był najlepszy wynik.
+Jeśli algorytm nie znajdował minimum, wówczas w jednym uruchomieniu, na jednej funkcji, 
+generował $\frac{FEs}{n} = 10^4$ pokoleń. \\
+\\
+W NAE zachodzi potrzeba przechowywania $10^4$ pokoleń. W najgorszym przypadku, w 40 wymiarach, populacja zawiera 400 rozwiązań.
+1 rozwiązanie to wektor 40 zmiennych typu double, zatem około $40\cdot8=320$ bajtów. 
+1 populacja zajmuje około $320\cdot400 = 128000$ bajtów $\approx 128$ kB. 
+$10^4$ populacji zajumuje około $128 \cdot 10^4$ kB $\approx 1280$ MB. \\
 \\
 W celu porównania, wykreślano dystrybuanty empiryczne najlepszych wyników z każdego uruchomienia 
 algorytmów na jednej funkcji. Najlepszym wynikiem jest najmniejsza różnica funkcji oceny dowolnego rozwiązania od minimum.
