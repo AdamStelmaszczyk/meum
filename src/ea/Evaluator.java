@@ -19,14 +19,9 @@ public class Evaluator
 		return fgeneric.evaluate(solution.feat);
 	}
 
-	public boolean hasReachedTarget()
+	public double getBestObservedScore()
 	{
-		return fgeneric.getBest() < fgeneric.getFtarget();
-	}
-
-	public boolean hasReachedMaxFunEvals()
-	{
-		return fgeneric.getEvaluations() >= MAX_FUN_EVALS;
+		return fgeneric.getBest();
 	}
 
 	public int getFunEvals()
@@ -39,13 +34,18 @@ public class Evaluator
 		return fgeneric.getFtarget();
 	}
 
+	public boolean hasReachedMaxFunEvals()
+	{
+		return fgeneric.getEvaluations() >= MAX_FUN_EVALS;
+	}
+
+	public boolean hasReachedTarget()
+	{
+		return fgeneric.getBest() < fgeneric.getFtarget();
+	}
+
 	public boolean isBetter(Solution a, Solution b)
 	{
 		return evaluate(a) < evaluate(b);
-	}
-
-	public double getBestObservedScore()
-	{
-		return fgeneric.getBest();
 	}
 }

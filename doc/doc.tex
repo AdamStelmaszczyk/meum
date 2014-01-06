@@ -103,8 +103,9 @@ Wyjściem jest jedna populacja o rozmiarze $n$.
 \subsection{Selekcja}
 
 Selekcja otrzymuje na wejściu zbiór wszystkich populacji $X$ oraz rozkład prawdopodobieństwa $R$.
-Selekcja najpierw wybiera z prawdopodobieństwem zgodnym z rozkładem $R$ jedną populację z $X$. Następnie z tej wybranej populacji 
-losuje i~zwraca jedno rozwiązanie wylosowane zgodnie z rozkładem jednostajnym.
+Selekcja najpierw wybiera z prawdopodobieństwem zgodnym z rozkładem $R$ jedną populację z $X$. 
+Następnie z tej wybranej populacji losuje i~zwraca jedno rozwiązanie wylosowane zgodnie z rozkładem jednostajnym.
+Do generowania losowych indeksów zgodnych z dowolnym dyskretnym rozkładem $R$ wykorzystaliśmy algorytm Inverse Transform \cite{norm}.
 
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
@@ -121,7 +122,7 @@ AE wykorzystujący wszystkie populacje (a nie tylko aktualną) będziemy nazywa�
 tzn. AE z populacją rosnącą w nieskończoność.
 Wersji NAE może być wiele, w zależności od wybranego rozkładu $R$. 
 W tej pracy zakładamy, ze funkcja gęstości prawdopodobieństwa rozkładu $R$ jest postaci $at^w + b$, gdzie
-$a, b, w \in \mathbb{R_+} \cup \{0\}$ to parametry, zaś $t \in \mathbb{N} \cup \{0\}$ to numer populacji. 
+$a, b, w \in \mathbb{R_+} \cup \{0\}$ to parametry, zaś $t \in \mathbb{N}$ to numer populacji. 
 Porównano następujące algorytmy:
 
 \begin{enumerate}
@@ -167,16 +168,16 @@ Suma w mianowniku jest równa $\frac{1}{6}(4T+1)\sqrt{T+1}$ z dokładnością do
 Eksperymenty przeprowadzono na 7 funkcjach testowych o numerach 15, 16, 19, 20, 21, 22, 24 z BBOB 2013 \cite{finck, hansen}, 
 zaimplementowanych w języku C.
 Funkcje testowe są wywoływane z Javy, w której napisano algorytmy oraz procedurę testującą.
-Liczba wymiarów $D \in \{10, 20, 40\}$. Maksymalna liczba wywołań funkcji oceny $FEs = 10^5D$. 
+Liczba wymiarów $D \in \{10, 20, 40\}$. Maksymalna liczba wywołań funkcji oceny $FEs = 10000D$. 
 Rozmiar populacji $n = 10D$. 
 Na każdej funkcji algorytm był niezależnie uruchamiany 15 razy, z każdego uruchomienia zapisywany był najlepszy wynik.
 Jeśli algorytm nie znajdował minimum, wówczas w jednym uruchomieniu, na jednej funkcji, 
-generował $\frac{FEs}{n} = 10^4$ pokoleń. \\
+generował $\frac{FEs}{n} = 1000$ pokoleń. \\
 \\
-W NAE zachodzi potrzeba przechowywania $10^4$ pokoleń. W najgorszym przypadku, w 40 wymiarach, populacja zawiera 400 rozwiązań.
+W NAE zachodzi potrzeba przechowywania $1000$ pokoleń. W najgorszym przypadku, w 40 wymiarach, populacja zawiera 400 rozwiązań.
 1 rozwiązanie to wektor 40 zmiennych typu double, zatem około $40\cdot8=320$ bajtów. 
 1 populacja zajmuje około $320\cdot400 = 128000$ bajtów $\approx 128$ kB. 
-$10^4$ populacji zajumuje około $128 \cdot 10^4$ kB $\approx 1280$ MB. \\
+$1000$ populacji zajumuje około $128 \cdot 1000$ kB $\approx 128$ MB. \\
 \\
 W celu porównania, wykreślano dystrybuanty empiryczne najlepszych wyników z każdego uruchomienia 
 algorytmów na jednej funkcji. Najlepszym wynikiem jest najmniejsza różnica funkcji oceny dowolnego rozwiązania od minimum.

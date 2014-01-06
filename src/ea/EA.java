@@ -1,60 +1,53 @@
 package ea;
 
+import ea.distribution.Distribution;
+
 public class EA
 {
-	public final int N_TO_DIM_RATIO = 10;
+	public final int NP_TO_DIM_RATIO = 10;
 	public final int DIM;
-	public final int N;
+	public final int NP;
 	private final Evaluator evaluator;
 	private final Populations populations;
+	private final Distribution distribution;
 
-	public EA(Evaluator evaluator, int dim)
+	public EA(Evaluator evaluator, Distribution distribution, int dim)
 	{
 		DIM = dim;
-		N = N_TO_DIM_RATIO * dim;
+		NP = NP_TO_DIM_RATIO * dim;
 		this.evaluator = evaluator;
-		this.populations = new Populations(evaluator.MAX_FUN_EVALS);
+		populations = new Populations(evaluator.MAX_FUN_EVALS / NP);
+		this.distribution = distribution;
 	}
 
 	public void optimize()
 	{
-		populations.add(new Population(N, DIM));
+		populations.add(new Population(NP, DIM));
 		do
 		{
-			final Population newPopulation = new Population(N, DIM);
-//			for (int i = 0; i < N; i++)
-//			{
-//				final Solution a = select();
-//				final Solution b = select();
-//				newPopulation.solutions[i] = mutate(crossover(a, b));
-//			}
+			final Population newPopulation = new Population(NP, DIM);
+			for (int i = 0; i < NP; i++)
+			{
+				final Solution a = select();
+				final Solution b = select();
+				newPopulation.solutions[i] = a.crossover(b).mutate();
+			}
 			succesion(newPopulation);
 		}
 		while (!evaluator.hasReachedTarget() && !evaluator.hasReachedMaxFunEvals());
 	}
 
-	private Solution mutate(Object crossover)
-	{
-		// TODO
-		return null;
-	}
-
-	private Object crossover(Solution a, Solution b)
-	{
-		// TODO
-		return null;
-	}
-
 	private Solution select()
 	{
-		// TODO
-		return null;
+		final int popIndex = distribution.sample(populations.size()) - 1;
+		final Population pop = populations.get(popIndex);
+		return pop.getRandom();
 	}
 
 	private void succesion(Population newPopulation)
 	{
 		final Population lastPopulation = populations.get(populations.size() - 1);
-		for (int i = 0; i < N; i++)
+		for (int i = 0; i < NP; i++)
 		{
 			if (evaluator.isBetter(lastPopulation.solutions[i], newPopulation.solutions[i]))
 			{

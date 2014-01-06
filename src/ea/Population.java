@@ -2,6 +2,8 @@ package ea;
 
 import java.util.Arrays;
 
+import testing.Main;
+
 public class Population
 {
 	public final Solution[] solutions;
@@ -16,14 +18,20 @@ public class Population
 		}
 	}
 
-	@Override
-	public String toString()
+	/** @return Deep copy of randomly chosen solution. */
+	public Solution getRandom()
 	{
-		return Arrays.toString(solutions);
+		return new Solution(solutions[Main.rand.nextInt(solutions.length)]);
 	}
 
 	public int size()
 	{
 		return solutions.length;
+	}
+
+	@Override
+	public String toString()
+	{
+		return Arrays.toString(solutions);
 	}
 }

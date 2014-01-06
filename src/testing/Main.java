@@ -8,29 +8,42 @@ import java.util.Random;
 import javabbob.JNIfgeneric;
 import ea.EA;
 import ea.Evaluator;
+import ea.distribution.Distribution;
 
 public class Main
 {
 	public final static int FUNCTIONS[] =
 	{ 15, 16, 19, 20, 21, 22, 24 };
 	public final static int RUNS = 15;
-	public final static int FUN_EVALS_TO_DIM_RATIO = 100000;
+	public final static int FUN_EVALS_TO_DIM_RATIO = 10000;
 	public final static int SEED = 1;
 	public final static Random rand = new Random(SEED);
 	public final static double DOMAIN_MIN = -5.0;
 	public final static double DOMAIN_MAX = 5.0;
+	public final static String DEFAULT_ALGORITHM_NAME = Distribution.names[0];
 	public final static int DEFAULT_DIM = 10;
 
 	/** Main method for running the whole BBOB experiment. */
 	public static void main(String[] args)
 	{
-		int dim = DEFAULT_DIM;
+		Distribution distribution = Distribution.fromName(DEFAULT_ALGORITHM_NAME);
 		if (args.length >= 1)
 		{
-			dim = Integer.parseInt(args[0]);
+			distribution = Distribution.fromName(args[0]);
 		}
 
-		final String filename = String.valueOf(dim);
+		int dim = DEFAULT_DIM;
+		if (args.length >= 2)
+		{
+			dim = Integer.parseInt(args[1]);
+		}
+
+		if (args.length == 0)
+		{
+			args = new String[1];
+			args[0] = DEFAULT_ALGORITHM_NAME;
+		}
+		final String filename = args[0] + "." + dim;
 
 		// Sets default locale to always have 1.23 not 1,23 in files
 		Locale.setDefault(Locale.US);
@@ -62,7 +75,7 @@ public class Main
 
 				final int MAX_FUN_EVALS = FUN_EVALS_TO_DIM_RATIO * dim;
 				final Evaluator evaluator = new Evaluator(fgeneric, MAX_FUN_EVALS);
-				final EA ea = new EA(evaluator, dim);
+				final EA ea = new EA(evaluator, distribution, dim);
 				ea.optimize();
 
 				final double distance = fgeneric.getBest() - fgeneric.getFtarget();
