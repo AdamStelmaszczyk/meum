@@ -43,7 +43,7 @@ public class Main
 			args = new String[1];
 			args[0] = DEFAULT_ALGORITHM_NAME;
 		}
-		final String filename = args[0] + "." + dim;
+		final String filename = args[0] + "_" + dim;
 
 		// Sets default locale to always have 1.23 not 1,23 in files
 		Locale.setDefault(Locale.US);
