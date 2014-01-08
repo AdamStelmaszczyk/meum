@@ -1,0 +1,115 @@
+BBOB data directory 'ae.40' created
+07-01-2014 20:39:48
+40D f15 run   1 FEs =  400000 best-target =    349.09296497 11s
+40D f15 run   2 FEs =  400000 best-target =    385.05561694 22s
+40D f15 run   3 FEs =  400000 best-target =    369.70555696 34s
+40D f15 run   4 FEs =  400000 best-target =    367.51313654 45s
+40D f15 run   5 FEs =  400000 best-target =    307.53017289 56s
+40D f15 run   6 FEs =  400000 best-target =    369.73362852 67s
+40D f15 run   7 FEs =  400000 best-target =    339.31597382 79s
+40D f15 run   8 FEs =  400000 best-target =    339.05550127 90s
+40D f15 run   9 FEs =  400000 best-target =    369.85412252 101s
+40D f15 run  10 FEs =  400000 best-target =    353.62587784 113s
+40D f15 run  11 FEs =  400000 best-target =    362.47079763 124s
+40D f15 run  12 FEs =  400000 best-target =    347.55818410 135s
+40D f15 run  13 FEs =  400000 best-target =    340.49606155 147s
+40D f15 run  14 FEs =  400000 best-target =    357.57367564 158s
+40D f15 run  15 FEs =  400000 best-target =    381.16265686 169s
+07-01-2014 20:42:37
+40D f16 run   1 FEs =  400000 best-target =     30.58793545 195s
+40D f16 run   2 FEs =  400000 best-target =     27.25651057 226s
+40D f16 run   3 FEs =  400000 best-target =     29.50588290 258s
+40D f16 run   4 FEs =  400000 best-target =     30.38060290 288s
+40D f16 run   5 FEs =  400000 best-target =     27.71210349 319s
+40D f16 run   6 FEs =  400000 best-target =     31.09039275 342s
+40D f16 run   7 FEs =  400000 best-target =     28.26787776 364s
+40D f16 run   8 FEs =  400000 best-target =     25.22261150 385s
+40D f16 run   9 FEs =  400000 best-target =     31.27295267 408s
+40D f16 run  10 FEs =  400000 best-target =     27.54419950 431s
+40D f16 run  11 FEs =  400000 best-target =     30.50377421 453s
+40D f16 run  12 FEs =  400000 best-target =     27.10778365 474s
+40D f16 run  13 FEs =  400000 best-target =     29.27059009 496s
+40D f16 run  14 FEs =  400000 best-target =     27.24274134 517s
+40D f16 run  15 FEs =  400000 best-target =     29.67772578 539s
+07-01-2014 20:48:47
+40D f19 run   1 FEs =  400000 best-target =      6.61621971 544s
+40D f19 run   2 FEs =  400000 best-target =      5.76855768 550s
+40D f19 run   3 FEs =  400000 best-target =      6.63795844 555s
+40D f19 run   4 FEs =  400000 best-target =      6.37666202 559s
+40D f19 run   5 FEs =  400000 best-target =      6.63203850 562s
+40D f19 run   6 FEs =  400000 best-target =      6.14193434 566s
+40D f19 run   7 FEs =  400000 best-target =      6.44219284 569s
+40D f19 run   8 FEs =  400000 best-target =      6.69558181 573s
+40D f19 run   9 FEs =  400000 best-target =      6.51649140 576s
+40D f19 run  10 FEs =  400000 best-target =      6.92231679 580s
+40D f19 run  11 FEs =  400000 best-target =      5.65945347 583s
+40D f19 run  12 FEs =  400000 best-target =      6.62669796 587s
+40D f19 run  13 FEs =  400000 best-target =      6.06083845 590s
+40D f19 run  14 FEs =  400000 best-target =      6.59081514 594s
+40D f19 run  15 FEs =  400000 best-target =      6.59968438 597s
+07-01-2014 20:49:45
+40D f20 run   1 FEs =  400000 best-target =      4.27413487 602s
+40D f20 run   2 FEs =  400000 best-target =     20.49978790 606s
+40D f20 run   3 FEs =  400000 best-target =     12.73948504 611s
+40D f20 run   4 FEs =  400000 best-target =     13.00082570 616s
+40D f20 run   5 FEs =  400000 best-target =      4.12291798 620s
+40D f20 run   6 FEs =  400000 best-target =      4.55599173 625s
+40D f20 run   7 FEs =  400000 best-target =      4.96780238 629s
+40D f20 run   8 FEs =  400000 best-target =      4.77042055 634s
+40D f20 run   9 FEs =  400000 best-target =      4.26143072 638s
+40D f20 run  10 FEs =  400000 best-target =      4.29936170 644s
+40D f20 run  11 FEs =  400000 best-target =      8.15358952 649s
+40D f20 run  12 FEs =  400000 best-target =      5.39065315 656s
+40D f20 run  13 FEs =  400000 best-target =      4.09260120 663s
+40D f20 run  14 FEs =  400000 best-target =      8.49570742 671s
+40D f20 run  15 FEs =  400000 best-target =      3.97132203 678s
+07-01-2014 20:51:06
+40D f21 run   1 FEs =  400000 best-target =      6.79271630 686s
+40D f21 run   2 FEs =  400000 best-target =     14.90203577 693s
+40D f21 run   3 FEs =  400000 best-target =      8.68380171 701s
+40D f21 run   4 FEs =  400000 best-target =      7.60904567 709s
+40D f21 run   5 FEs =  400000 best-target =      8.21430975 717s
+40D f21 run   6 FEs =  400000 best-target =     12.72615739 725s
+40D f21 run   7 FEs =  400000 best-target =     11.01225239 733s
+40D f21 run   8 FEs =  400000 best-target =     10.43959474 740s
+40D f21 run   9 FEs =  400000 best-target =     12.41084613 748s
+40D f21 run  10 FEs =  400000 best-target =     21.74023921 756s
+40D f21 run  11 FEs =  400000 best-target =      6.37209821 763s
+40D f21 run  12 FEs =  400000 best-target =     11.73684633 771s
+40D f21 run  13 FEs =  400000 best-target =     18.76445587 779s
+40D f21 run  14 FEs =  400000 best-target =      5.63136515 786s
+40D f21 run  15 FEs =  400000 best-target =      7.55185962 794s
+07-01-2014 20:53:02
+40D f22 run   1 FEs =  400000 best-target =     28.73624956 798s
+40D f22 run   2 FEs =  400000 best-target =     26.72570146 801s
+40D f22 run   3 FEs =  400000 best-target =     10.79856753 805s
+40D f22 run   4 FEs =  400000 best-target =      7.79087554 809s
+40D f22 run   5 FEs =  400000 best-target =      7.92742191 813s
+40D f22 run   6 FEs =  400000 best-target =     59.84027055 816s
+40D f22 run   7 FEs =  400000 best-target =     17.48836244 820s
+40D f22 run   8 FEs =  400000 best-target =      8.90525458 824s
+40D f22 run   9 FEs =  400000 best-target =     21.27037785 828s
+40D f22 run  10 FEs =  400000 best-target =      7.76243447 831s
+40D f22 run  11 FEs =  400000 best-target =     27.31740823 835s
+40D f22 run  12 FEs =  400000 best-target =     27.34112380 839s
+40D f22 run  13 FEs =  400000 best-target =     33.80560439 842s
+40D f22 run  14 FEs =  400000 best-target =     53.30121505 846s
+40D f22 run  15 FEs =  400000 best-target =      8.70086660 850s
+07-01-2014 20:53:58
+40D f24 run   1 FEs =  400000 best-target =    388.62768251 855s
+40D f24 run   2 FEs =  400000 best-target =    398.32236669 859s
+40D f24 run   3 FEs =  400000 best-target =    380.75744280 862s
+40D f24 run   4 FEs =  400000 best-target =    394.29112406 866s
+40D f24 run   5 FEs =  400000 best-target =    386.56139093 870s
+40D f24 run   6 FEs =  400000 best-target =    371.11588113 874s
+40D f24 run   7 FEs =  400000 best-target =    383.79319286 877s
+40D f24 run   8 FEs =  400000 best-target =    385.79023053 881s
+40D f24 run   9 FEs =  400000 best-target =    400.56575319 885s
+40D f24 run  10 FEs =  400000 best-target =    375.93511192 889s
+40D f24 run  11 FEs =  400000 best-target =    402.51799130 892s
+40D f24 run  12 FEs =  400000 best-target =    396.61345655 896s
+40D f24 run  13 FEs =  400000 best-target =    368.06826351 900s
+40D f24 run  14 FEs =  400000 best-target =    378.32174747 904s
+40D f24 run  15 FEs =  400000 best-target =    374.44237591 907s
+07-01-2014 20:54:55
+---- 40-D done ----
