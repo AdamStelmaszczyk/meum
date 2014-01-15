@@ -214,7 +214,7 @@ NAEL     & 2  & 2  & 2  & 2  & 2  & 2  & 2  & 14   \\
 NAEK     & 2  & 2  & 2  & 2  & 2  & 2  & 2  & 14   \\ 
 \end{tabular}
 \caption{Porównanie algorytmów w 10 wymiarach}
-\label{table:total}
+\label{table:10d}
 \end{table}
 
 \begin{figure}[H]
@@ -253,7 +253,7 @@ NAEL     & 1,5 & 2  & 2  & 2  & 2  & 2  & 2  & 13,5   \\
 NAEK     & 3,5 & 2  & 2  & 2  & 2  & 2  & 2  & 15,5   \\ 
 \end{tabular}
 \caption{Porównanie algorytmów w 20 wymiarach}
-\label{table:total}
+\label{table:20d}
 \end{table}
 
 \begin{figure}[H]
@@ -293,7 +293,7 @@ NAEL     & 1,5 & 2  & 2  & 2   & 1,5 & 2  & 2  & 12   \\
 NAEK     & 3   & 2  & 2  & 3,5 & 1,5 & 2  & 2  & 16   \\ 
 \end{tabular}
 \caption{Porównanie algorytmów w 40 wymiarach}
-\label{table:total}
+\label{table:40d}
 \end{table}
 
 \begin{figure}[H]
@@ -318,8 +318,8 @@ NAEK     & 3   & 2  & 2  & 3,5 & 1,5 & 2  & 2  & 16   \\
 
 \subsection{80 wymiarów}
 
-80 wymiarów to już niemal zupełna dominacja AE, zdecydowanie wygrywa na 4 z 7 funkcji,
-na pozostałych remisujać na pierwszym miejscu. Drugi w kolejności jest NAEK, potem zaraz NAEL
+80 wymiarów to już niemal zupełna dominacja AE, zdecydowanie wygrywa na czterech z siedmiu funkcji,
+na pozostałych remisując na pierwszym miejscu. Drugi w kolejności jest NAEK, potem zaraz NAEL
 i trochę dalej NAEP. Wyraźnie najgorzej spisuje się NAEU.
 
 \begin{table}[H]
@@ -333,7 +333,7 @@ NAEL     & 2   & 2  & 2  & 2  & 2  & 3  & 2  & 15   \\
 NAEK     & 3   & 2  & 2  & 2  & 3  & 3  & 2  & 17   \\ 
 \end{tabular}
 \caption{Porównanie algorytmów w 80 wymiarach}
-\label{table:total}
+\label{table:80d}
 \end{table}
 
 \begin{figure}[H]
@@ -356,7 +356,45 @@ NAEK     & 3   & 2  & 2  & 2  & 3  & 3  & 2  & 17   \\
   {\includegraphics[width=.35\textwidth]{../pngs/80/24.png} }}
 \end{figure}
 
+\subsection{Ostateczny ranking}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ l | c | c | c | c | c }
+         & 10  & 20   & 40   & 80  & suma \\ \hline
+AE       & 14  & 15,5 & 19,5 & 23  & 72   \\ 
+NAEU     & 14  & 12   & 9,5  & 4   & 43,5 \\ 
+NAEP     & 14  & 13,5 & 11   & 11  & 49,5 \\ 
+NAEL     & 14  & 13,5 & 12   & 15  & 54,5 \\
+NAEK     & 14  & 15,5 & 16   & 17  & 62,5 \\ 
+\end{tabular}
+\caption{Suma punktów z wszystkich badanych wymiarów}
+\label{table:sum}
+\end{table}
+
+Bazując na sumie punktów przedstawionej w tabeli \ref{table:sum}, ostateczny ranking
+algorytmów zarysował się wyraźnie:
+
+\begin{enumerate}
+ \item Klasyczny AE, 72 punkty.
+ \item NAEK, 62,5.
+ \item NAEL, 54,5.
+ \item NAEP, 49,5.
+ \item NAEU, 43,5.
+\end{enumerate}
+
 \section{Wnioski}
+
+Algorytmy NAE radziły sobie tym lepiej, im bardziej były podobne do klasycznego AE, tzn. 
+im bardziej ich rozkład przypominał rozkład z klasycznego AE (opisany w rozdziale 3). 
+Im większe prawdopodobieństwo, że została wybrana najnowsza populacja, 
+tym algorytm lepiej się sprawdzał. Wynik ten potwierdza hipotezę, że populacje w AE
+z czasem stają się coraz lepsze. W szczególności, że najnowsza populacja jest tą najbardziej 
+atrakcyjną, z której to powinniśmy wybierać osobniki w selekcji. Możliwym wariantem byłoby
+wybieranie osobników z $x$ ostatnich populacji, np. z pięciu ostatnich populacji.
+W naszych badaniach, wykorzystanie dodatkowej informacji, w postaci wszystkich starszych populacji, 
+przyniosło jedynie straty. Co więcej, NAE jest trudniejszy w implementacji
+oraz zużywa znacznie więcej pamięci operacyjnej.
 
 \nocite{*}
 \bibliographystyle{plain}
