@@ -37,13 +37,12 @@ działający według schematu \ref{ae}:
   \State $T \gets 1$
   \State $P(T) \gets \{x_1, x_2, \ldots, x_n\}$
   \While{$! stop$}
+    \State $T \gets T+1$
     \For{$i = 0$ \bf{to} $i = n - 1$}
       \State $a \gets$ selekcja$(\{P(1), P(2), \dots, P(T)\}, R)$
       \State $b \gets$ selekcja$(\{P(1), P(2), \dots, P(T)\}, R)$
-      \State $O(T,i) \gets$ mutacja$($krzy{\.z}owanie$(a, b))$
-    \EndFor
-    \State $P(T+1) \gets$ sukcesja$(P(T), O(T))$
-    \State $T \gets T+1$
+      \State $P(T,i) \gets$ mutacja$($krzy{\.z}owanie$(a, b))$
+    \EndFor    
   \EndWhile
 \EndFunction
 \end{algorithmic}
@@ -82,37 +81,27 @@ Wykorzystano krzyżowanie uśredniające.
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Sukcesja}
-
-Sukcesja na wejściu otrzymuje dwie populacje o rozmiarze $n$: aktualną $P$ oraz populację mutantów $O$.
-Wyjściem jest jedna populacja o rozmiarze $n$.
-
-\begin{algorithm}[H]
-\begin{algorithmic}[1]
-\Function{sukcesja}{$P, O$}
-  \For{$i = 0$ \bf{to} $i = n - 1$}
-    \If{$f(O(T, i)) < f(P(T, i)) $}
-      \State $P(T+1, i) \gets O(T, i)$
-    \Else
-      \State $P(T+1, i) \gets P(T, i)$
-    \EndIf
-  \EndFor
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
 \subsection{Selekcja}
 
 Selekcja otrzymuje na wejściu zbiór wszystkich populacji $X$ oraz rozkład prawdopodobieństwa $R$.
-Selekcja najpierw wybiera z prawdopodobieństwem zgodnym z rozkładem $R$ jedną populację z $X$. 
-Następnie z tej wybranej populacji losuje i~zwraca jedno rozwiązanie wylosowane zgodnie z rozkładem jednostajnym.
-Do generowania losowych indeksów zgodnych z dowolnym dyskretnym rozkładem $R$ wykorzystaliśmy algorytm Inverse Transform \cite{norm}.
+Na początku losowane są dwie populacje $P_a$ oraz $P_b$ zgodnie z danym rozkładem $R$.
+Następnie z $P_a$ losowane jest rozwiązanie $a$ oraz z $P_b$ losowane jest rozwiązanie $b$, zgodnie
+z rozkładem jednostajnym. Wynikiem selekcji jest rozwiązanie najlepsze z pary $a,b$.
+Do generowania losowych indeksów zgodnych z dowolnym dyskretnym rozkładem $R$ wykorzystano
+metodę Inverse Transform \cite{norm}.
 
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
 \Function{selekcja}{$X, R$}
-  \State $P \gets X[R(1, |X|)]$
-  \State $wynik \gets P[\mathcal{U}(1, |P|)]$
+  \State $P_a \gets X[R(1, |X|)]$
+  \State $P_b \gets X[R(1, |X|)]$
+  \State $a \gets P_a[\mathcal{U}(1, |P_a|)]$  
+  \State $b \gets P_b[\mathcal{U}(1, |P_b|)]$
+  \If{$f(a) < f(b)$}
+    \State $wynik \gets a$
+  \Else
+    \State $wynik \gets b$
+  \EndIf
 \EndFunction
 \end{algorithmic}
 \end{algorithm}

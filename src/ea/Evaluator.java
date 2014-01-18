@@ -44,6 +44,9 @@ public class Evaluator
 		return fgeneric.getBest() < fgeneric.getFtarget();
 	}
 
+	/** @param a Solution a.
+	 * @param b Solution b.
+	 * @return True, if a is better than b. */
 	public boolean isBetter(Solution a, Solution b)
 	{
 		return evaluate(a) < evaluate(b);

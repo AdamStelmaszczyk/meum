@@ -25,35 +25,28 @@ public class EA
 		populations.add(new Population(NP, DIM));
 		do
 		{
-			final Population newPopulation = new Population(NP, DIM);
+			final Population mutants = new Population(NP, DIM);
 			for (int i = 0; i < NP; i++)
 			{
 				final Solution a = select();
 				final Solution b = select();
-				newPopulation.solutions[i] = a.crossover(b).mutate();
+				mutants.solutions[i] = a.crossover(b).mutate();
 			}
-			succesion(newPopulation);
+			populations.add(mutants);
 		}
 		while (!evaluator.hasReachedTarget() && !evaluator.hasReachedMaxFunEvals());
 	}
 
 	private Solution select()
 	{
-		final int popIndex = distribution.sample(populations.size()) - 1;
-		final Population pop = populations.get(popIndex);
-		return pop.getRandom();
-	}
-
-	private void succesion(Population newPopulation)
-	{
-		final Population lastPopulation = populations.get(populations.size() - 1);
-		for (int i = 0; i < NP; i++)
+		final int popIndexA = distribution.sample(populations.size()) - 1;
+		final int popIndexB = distribution.sample(populations.size()) - 1;
+		final Solution a = populations.get(popIndexA).getRandom();
+		final Solution b = populations.get(popIndexB).getRandom();
+		if (evaluator.isBetter(a, b))
 		{
-			if (evaluator.isBetter(lastPopulation.solutions[i], newPopulation.solutions[i]))
-			{
-				newPopulation.solutions[i] = new Solution(lastPopulation.solutions[i]);
-			}
+			return a;
 		}
-		populations.add(newPopulation);
+		return b;
 	}
 }
