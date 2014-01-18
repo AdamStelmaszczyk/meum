@@ -45,7 +45,7 @@ xmin = min(data1, data2)
 if (!is.na(filename[3])) 
 {
 	xmax = max(xmax, data3)
-	xmin = min(xmax, data3)
+	xmin = min(xmin, data3)
 }
 if (!is.na(filename[4])) 
 {
